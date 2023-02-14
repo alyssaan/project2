@@ -3,7 +3,7 @@
   const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'knitting', 
                     'snorkeling', 'singing', 'cleaning', 'cheering', 'curling', 'bobsledding', 
                     'skipping', 'flying']
-  const classes = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
+  const cNames = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
                    'Principles of Microeconomics', 'Philosophical Perspectives']
   const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 
                       'ambitious', 'oily']
@@ -16,17 +16,22 @@
   const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
                   'Professor Satrom', 'Professor Jagoda']
   
-  const iVButton = document.createElement('ing Verb')
-  const cButton = document.createElement('Class')
-  const aButton = document.createElement('Adjective')
-  const plNouns = document.createElement('Plural Noun')
-  const eVButton = document.createElement('ed Verb')
-  const fButton = document.createElement('Feeling')
-  const pButton = document.createElement('Person')
+  const wordsButton = document.createElement('Generate Words')
+  wordsButton.innerHTML = 'Generate Words'
   
-  iVButton.addEventListener('click', () => {
+  
+  let iVerb, cName, adjective, pNoun, eVerb, feeling, person
+  
+  wordsButton.addEventListener('click', function() {
     iVerb = ingVerbs[Math.floor(Math.random()*ingVerbs.length)]
-    alert(iVerb)
-})
+	  cName = cNames[Math.floor(Math.random()*cNames.length)]
+    adjective = adjectives[Math.floor(Math.random()*adjectives.length)]
+    pNoun = plNouns[Math.floor(Math.random()*plNouns.length)]
+    eVerb = edVerbs[Math.floor(Math.random()*edVerbs.length)]
+    feeling = feelings[Math.floor(Math.random()*feelings.length)]
+    person = people[Math.floor(Math.random()*people.length)]
+  })
+  
+  
 
 </script>
