@@ -1,0 +1,32 @@
+<script>
+
+  const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'knitting', 
+                    'snorkeling', 'singing', 'cleaning', 'cheering', 'curling', 'bobsledding', 
+                    'skipping', 'flying']
+  const classes = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
+                   'Principles of Microeconomics', 'Philosophical Perspectives']
+  const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 
+                      'ambitious', 'oily']
+  const plNouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 
+                   'napkins', 'plates']
+  const edVerbs = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'knit', 'snorkeled', 
+                   'sang', 'cleaned', 'cheered', 'curled', 'bobsled', 'skipped', 'flied']
+  const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enraged', 'depresed', 
+                    'scared', 'overjoyed']
+  const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
+                  'Professor Satrom', 'Professor Jagoda']
+  
+  const iVButton = document.createElement('ing Verb')
+  const cButton = document.createElement('Class')
+  const aButton = document.createElement('Adjective')
+  const plNouns = document.createElement('Plural Noun')
+  const eVButton = document.createElement('ed Verb')
+  const fButton = document.createElement('Feeling')
+  const pButton = document.createElement('Person')
+  
+  iVButton.addEventListener('click', () => {
+    iVerb = ingVerbs[Math.floor(Math.random()*ingVerbs.length)]
+    alert(iVerb)
+})
+
+</script>
