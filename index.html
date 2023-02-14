@@ -16,10 +16,9 @@
   const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
                   'Professor Satrom', 'Professor Jagoda']
   
-  const wordsButton = document.createElement('Generate Words')
-  wordsButton.innerHTML = 'Generate Words'
-  
   let iVerb, cName, adjective, pNoun, eVerb, feeling, person
+  
+  let wordsButton
   
   function words () {
     iVerb = ingVerbs[Math.floor(Math.random()*ingVerbs.length)]
@@ -31,7 +30,16 @@
     person = people[Math.floor(Math.random()*people.length)]
   }
   
+  function circle() {
+		const ele = document.createElement('div')
+    ele.style.width = '150px'
+  	ele.style.height = '50px'
+  	ele.style.backgroundColor = 'pink'
+  	return ele
+  }
+  
   function setup () {
+    wordsButton = circle()
     document.body.appendChild(wordsButton)
     
     wordsButton.addEventListener('words', words)
