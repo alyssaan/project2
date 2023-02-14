@@ -20,6 +20,14 @@
   
   let wordsButton
   
+  function createButton() {
+		const b = document.createElement('div')
+    b.style.width = '150px'
+  	b.style.height = '50px'
+  	b.style.backgroundColor = 'pink'
+  	return b
+  }
+  
   function words () {
     iVerb = ingVerbs[Math.floor(Math.random()*ingVerbs.length)]
 	  cName = cNames[Math.floor(Math.random()*cNames.length)]
@@ -28,18 +36,11 @@
     eVerb = edVerbs[Math.floor(Math.random()*edVerbs.length)]
     feeling = feelings[Math.floor(Math.random()*feelings.length)]
     person = people[Math.floor(Math.random()*people.length)]
-  }
-  
-  function circle() {
-		const ele = document.createElement('div')
-    ele.style.width = '150px'
-  	ele.style.height = '50px'
-  	ele.style.backgroundColor = 'pink'
-  	return ele
+  	return iVerb, cName, adjective, pNoun, eVerb, feeling, person
   }
   
   function setup () {
-    wordsButton = circle()
+    wordsButton = createButton()
     document.body.appendChild(wordsButton)
     
     wordsButton.addEventListener('words', words)
