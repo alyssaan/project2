@@ -11,8 +11,7 @@
 
 <div class="madlib"></div>
 
-<button class="main-button">write it</button>
-
+<button class="button">madlib</button>
 
 <script>
   
@@ -21,7 +20,7 @@
 	}
 	
   const madlib = document.querySelector('.madlib')
-  const button = document.querySelector('.main-button')
+  const button = document.querySelector('.button')
 
   const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'knitting', 
                     'snorkeling', 'singing', 'cleaning', 'cheering', 'curling', 'bobsledding', 
@@ -110,7 +109,9 @@
 			const place = randomItem(places)
       genPlaces.push(place)
     }
-
+    
+    madlib.textcontent = chosenML
+    
     button.onclick = showMadLib
   }
   
@@ -147,6 +148,8 @@
     for (let i = 0; i < genPlaces.length; i++) {
 			chosenML = chosenML.replace('{{place}}', genPlaces[i])
     }
+    
+    madlib.textcontent = chosenML
     
   }
   
