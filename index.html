@@ -52,8 +52,9 @@
   const genEdVerbs = []
   const genFeelings = []
   const genPeople = []
+  const genPlaces = []
   
-  const chosenML = madlibs[Math.floor(Math.random()) * madlibs.length]
+  let chosenML = madlibs[Math.floor(Math.random()) * madlibs.length]
   
   function randomItem (arr) {
     const n = Math.floor(Math.random() * arr.length)
@@ -106,7 +107,7 @@
     }
     
     for (let i = 0; i < numPlaces; i++) {
-			const person = randomItem(places)
+			const place = randomItem(places)
       genPlaces.push(place)
     }
 
@@ -150,6 +151,5 @@
   }
   
   button.onclick = showWords
-
 
 </script>
