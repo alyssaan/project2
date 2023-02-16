@@ -39,10 +39,8 @@
                   'Professor Satrom', 'Professor Jagoda']
   const places = ['the Reg', 'Harper', 'Woodlawn', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel']
   
-  const madlib1 = 'I was {{-ing verb}} in my {{class}} when all of a sudden I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...'
-  const madlib2 = 'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...'
-  
-  const madlibs = [madlib1, madlib2]
+  // const madlib1 = 'I was {{-ing verb}} in {{course}} when all of a sudden I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...'
+  // const madlib2 = 'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...'
   
   const genIngVerbs = []
   const genCourses = []
@@ -53,6 +51,8 @@
   const genPeople = []
   const genPlaces = []
   
+  const madlibs = ['I was {{-ing verb}} in {{course}} when all of a sudden I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...',
+                   'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...']
   let chosenML = madlibs[Math.floor(Math.random()) * madlibs.length]
   
   function randomItem (arr) {
@@ -117,38 +117,39 @@
   
   function showMadLib () {
     
-    for (let i = 0; i < genIngVerbs.length; i++) {
-			chosenML = chosenML.replace('{{-ing verb}}', genIngVerbs[i])
+    for (let a = 0; a < genIngVerbs.length; a++) {
+			chosenML = chosenML.replace('{{-ing verb}}', genIngVerbs[a])
     }
     
-    for (let i = 0; i < genCourses.length; i++) {
-			chosenML = chosenML.replace('{{course}}', genCourses[i])
+    for (let b = 0; b < genCourses.length; b++) {
+			chosenML = chosenML.replace('{{course}}', genCourses[b])
     }
     
-    for (let i = 0; i < genAdjectives.length; i++) {
-			chosenML = chosenML.replace('{{adj}}', genAdjectives[i])
+    for (let c = 0; c < genAdjectives.length; c++) {
+			chosenML = chosenML.replace('{{adj}}', genAdjectives[c])
     }
     
-    for (let i = 0; i < genNouns.length; i++) {
-			chosenML = chosenML.replace('{{pl noun}}', genNouns[i])
+    for (let d = 0; d < genNouns.length; d++) {
+			chosenML = chosenML.replace('{{pl noun}}', genNouns[d])
     }
     
-    for (let i = 0; i < genEdVerbs.length; i++) {
-			chosenML = chosenML.replace('{{-ed verb}}', genEdVerbs[i])
+    for (let e = 0; e < genEdVerbs.length; e++) {
+			chosenML = chosenML.replace('{{-ed verb}}', genEdVerbs[e])
     }
     
-    for (let i = 0; i < genFeelings.length; i++) {
-			chosenML = chosenML.replace('{{feeling}}', genFeelings[i])
+    for (let f = 0; f < genFeelings.length; f++) {
+			chosenML = chosenML.replace('{{feeling}}', genFeelings[f])
     }
     
-    for (let i = 0; i < genPeople.length; i++) {
-			chosenML = chosenML.replace('{{person}}', genPeople[i])
+    for (let g = 0; g < genPeople.length; g++) {
+			chosenML = chosenML.replace('{{person}}', genPeople[g])
     }
     
-    for (let i = 0; i < genPlaces.length; i++) {
-			chosenML = chosenML.replace('{{place}}', genPlaces[i])
+    for (let h = 0; h < genPlaces.length; h++) {
+			chosenML = chosenML.replace('{{place}}', genPlaces[h])
     }
     
+    console.log(chosenML)
     madlib.textcontent = chosenML
     
   }
