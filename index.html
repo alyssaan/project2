@@ -22,17 +22,17 @@
   const madlib = document.querySelector('.madlib')
   const button = document.querySelector('.button')
 
-  const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'knitting', 
-                    'snorkeling', 'singing', 'cleaning', 'cheering', 'curling', 'bobsledding', 
-                    'skipping', 'flying']
+  const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'crochet', 
+                    'snorkeling', 'hula-hooping', 'cleaning', 'cheering', 'curling', 'bobsledding', 
+                    'skipping']
   const courses = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
                    'Principles of Microeconomics', 'Philosophical Perspectives']
   const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 
                       'ambitious', 'oily']
   const nouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 
                    'napkins', 'plates']
-  const edVerbs = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'knit', 'snorkeled', 
-                   'sang', 'cleaned', 'cheered', 'curled', 'bobsled', 'skipped', 'flied']
+  const edVerbs = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'crocheted', 'snorkeled', 
+                   'hula-hooped', 'cleaned', 'cheered', 'curled', 'bobsled', 'skipped']
   const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enraged', 'depresed', 
                     'scared', 'overjoyed']
   const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
@@ -52,60 +52,64 @@
   const genPlaces = []
   
   const madlibs = ['I was {{-ing verb}} in {{course}} when all of a sudden I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...',
-                   'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...']
-  let chosenML = madlibs[1]
+                   'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...',
+                  'Today in {{course}} there was a surprise lecture by {{person}}. In the middle, they suddenly began {{-ing verb}}. Everyone felt really {{feeling}}!']
+  // let chosenML = madlibs[Math.floor(Math.random() * madlibs.length)]
   
   function randomItem (arr) {
     const n = Math.floor(Math.random() * arr.length)
     return arr[n]
   }
   
+  let chosenML = randomItem (madlibs)
+  
   function showWords () {
+    
     const numIngVerbs = countInstances(chosenML, '{{-ing verb}}')
-    const numCourses = countInstances(chosenML, '{{pl noun}}')
-    const numAdjectives = countInstances(chosenML, '{{-ing verb}}')
-    const numNouns = countInstances(chosenML, '{{-ing verb}}')
-    const numEdVerbs = countInstances(chosenML, '{{-ing verb}}')
-    const numFeelings = countInstances(chosenML, '{{-ing verb}}')
-    const numPeople = countInstances(chosenML, '{{-ing verb}}')
+    const numCourses = countInstances(chosenML, '{{course}}')
+    const numAdjectives = countInstances(chosenML, '{{adj}}')
+    const numNouns = countInstances(chosenML, '{{pl noun}}')
+    const numEdVerbs = countInstances(chosenML, '{{-ed verb}}')
+    const numFeelings = countInstances(chosenML, '{{feeling}}')
+    const numPeople = countInstances(chosenML, '{{person}}')
 		const numPlaces = countInstances(chosenML, '{{place}}')
     
-    for (let i = 0; i < numIngVerbs; i++) {
+    for (let a = 0; a < numIngVerbs; a++) {
 			const ingVerb = randomItem(ingVerbs)
       genIngVerbs.push(ingVerb)
     }
     
-    for (let i = 0; i < numCourses; i++) {
+    for (let b = 0; b < numCourses; b++) {
 			const course = randomItem(courses)
       genCourses.push(course)
     }
     
-    for (let i = 0; i < numAdjectives; i++) {
+    for (let c = 0; c < numAdjectives; c++) {
 			const adj = randomItem(adjectives)
       genAdjectives.push(adj)
     }
     
-    for (let i = 0; i < numNouns; i++) {
+    for (let d = 0; d < numNouns; d++) {
 			const noun = randomItem(nouns)
       genNouns.push(noun)
     }
     
-    for (let i = 0; i < numEdVerbs; i++) {
+    for (let e = 0; e < numEdVerbs; e++) {
 			const edVerb = randomItem(edVerbs)
       genEdVerbs.push(edVerb)
     }
     
-    for (let i = 0; i < numFeelings; i++) {
+    for (let f = 0; f < numFeelings; f++) {
 			const feeling = randomItem(feelings)
       genFeelings.push(feeling)
     }
     
-    for (let i = 0; i < numPeople; i++) {
+    for (let g = 0; g < numPeople; g++) {
 			const person = randomItem(people)
       genPeople.push(person)
     }
     
-    for (let i = 0; i < numPlaces; i++) {
+    for (let h = 0; h < numPlaces; h++) {
 			const place = randomItem(places)
       genPlaces.push(place)
     }
