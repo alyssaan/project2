@@ -1,51 +1,86 @@
-<script>
+<style>
 
-  const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'knitting', 
+  .madlib {
+    background-color: pink;
+    padding: 20px;
+    font-family: sans-serif;
+    font-size: 5vw;
+  }
+
+</style>
+
+<div class="madlib"></div>
+
+<button class="main-button">write it</button>
+
+
+<script>
+  
+  function countInstances (string, word) {
+   return string.split(word).length - 1;
+	}
+	
+  const madlib = document.querySelector('.madlib')
+  const button = document.querySelector('.main-button')
+
+  const verbing = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'knitting', 
                     'snorkeling', 'singing', 'cleaning', 'cheering', 'curling', 'bobsledding', 
                     'skipping', 'flying']
-  const cNames = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
+  const classes = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
                    'Principles of Microeconomics', 'Philosophical Perspectives']
   const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 
                       'ambitious', 'oily']
-  const plNouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 
+  const nouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 
                    'napkins', 'plates']
-  const edVerbs = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'knit', 'snorkeled', 
+  const verbed = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'knit', 'snorkeled', 
                    'sang', 'cleaned', 'cheered', 'curled', 'bobsled', 'skipped', 'flied']
   const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enraged', 'depresed', 
                     'scared', 'overjoyed']
   const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
                   'Professor Satrom', 'Professor Jagoda']
   
-  let iVerb, cName, adjective, pNoun, eVerb, feeling, person
+  const madlib1 = 'I am {{-ing verb}} in my {{class}}. I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...'
+  const generatedNouns = []
+  const generatedVerbs = []
   
-  let wordsButton
   
-  function createButton() {
-		const b = document.createElement('div')
-    b.style.width = '150px'
-  	b.style.height = '50px'
-  	b.style.backgroundColor = 'pink'
-  	return b
+  
+  function randomItem (arr) {
+    const n = Math.floor(Math.random() * arr.length)
+    return arr[n]
   }
   
-  function words () {
-    iVerb = ingVerbs[Math.floor(Math.random()*ingVerbs.length)]
-	  cName = cNames[Math.floor(Math.random()*cNames.length)]
-    adjective = adjectives[Math.floor(Math.random()*adjectives.length)]
-    pNoun = plNouns[Math.floor(Math.random()*plNouns.length)]
-    eVerb = edVerbs[Math.floor(Math.random()*edVerbs.length)]
-    feeling = feelings[Math.floor(Math.random()*feelings.length)]
-    person = people[Math.floor(Math.random()*people.length)]
-  	return iVerb, cName, adjective, pNoun, eVerb, feeling, person
-  }
-  
-  function setup () {
-    wordsButton = createButton()
-    document.body.appendChild(wordsButton)
+  function showWords () {
+    const vs = countInstances(example, '{{verb}}')
+    const ns = countInstances(example, '{{noun}}')
     
-    wordsButton.addEventListener('words', words)
+    for (let i = 0; i < vs; i++) {
+			const verb = randomItem(verbs)
+      generatedVerbs.push(verb)
+    }
+    
+    for (let i = 0; i < ns; i++) {
+			const noun = randomItem(nouns)
+      generatedNouns.push(noun)
+    }
+    
+    console.log(generatedVerbs)
+
+    button.onclick = showMadLib
   }
   
-  window.addEventListener('load', setup)
+  function showMadLib () {
+    let filledExample = example
+    
+    for (let i = 0; i < generatedVerbs.length; i++) {
+			filledExample = filledExample.replace('{{verb}}', generatedVerbs[i])
+      console.log(filledExample)
+    }
+    
+    console.log(filledExample)
+  }
+  
+  button.onclick = showWords
+
 
 </script>
