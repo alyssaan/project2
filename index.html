@@ -1,17 +1,27 @@
 <style>
 
   .madlib {
-    background-color: pink;
+    position: absolute;
+		left: 47vw;
     padding: 20px;
-    font-family: sans-serif;
+    font-family: lucida-console;
     font-size: 5vw;
+  }
+  
+  .button {
+    position: absolute;
+    left: 55vw;
+    top: 10vw;
+    font-family: lucida-console;
+    font-size: 3vw;
+
   }
 
 </style>
 
-<div class="madlib"></div>
+<div class="madlib">MADLIBS</div>
 
-<button class="button">madlib</button>
+<button class="button">generate</button>
 
 <script>
   
@@ -113,13 +123,12 @@
 			const place = randomItem(places)
       genPlaces.push(place)
     }
-    
-    madlib.textcontent = chosenML
-    
-    button.onclick = showMadLib
+
   }
   
   function showMadLib () {
+    
+    showWords ()
     
     for (let a = 0; a < genIngVerbs.length; a++) {
 			chosenML = chosenML.replace('{{-ing verb}}', genIngVerbs[a])
@@ -158,6 +167,6 @@
     
   }
   
-  button.onclick = showWords
+  button.onclick = showMadLib ()
 
 </script>
