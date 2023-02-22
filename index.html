@@ -17,12 +17,21 @@
     font-size: 3vw;
 
   }
+  
+  .mlText {
+    position: absolute;
+    left: 5vw;
+    top: 20vw;
+    font-family: lucida-console;
+    font-size: 5vw;
+  }
 
 </style>
 
 <div class="madlib">MADLIBS</div>
 
 <button class="button">generate</button>
+<div class="mlText"></div>
 
 <script>
   
@@ -128,6 +137,7 @@
   
   function showMadLib () {
     
+    madlib.textContent = 'MADLIBS'
     showWords ()
     
     for (let a = 0; a < genIngVerbs.length; a++) {
@@ -163,10 +173,20 @@
     }
     
     console.log(chosenML)
-    madlib.textContent = chosenML
     
   }
   
-  button.onclick = showMadLib ()
+  function setup () {
+    
+    showMadLib ()
+    
+    if (button.onClick === true) {
+      mlText.textContent = chosenML
+    }
+
+  }
+  
+  window.addEventListener ('load', setup ())
+  // button.addEventListener ('click', showMadLib())
 
 </script>
