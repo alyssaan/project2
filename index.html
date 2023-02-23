@@ -136,8 +136,7 @@
   }
   
   function showMadLib () {
-    
-    madlib.textContent = 'MADLIBS'
+  
     showWords ()
     
     for (let a = 0; a < genIngVerbs.length; a++) {
@@ -173,20 +172,10 @@
     }
     
     console.log(chosenML)
+    madlib.textContent = chosenML
     
   }
-  
-  function setup () {
-    
-    showMadLib ()
-    
-    if (button.onClick === true) {
-      mlText.textContent = chosenML
-    }
-
-  }
-  
-  window.addEventListener ('load', setup ())
-  // button.addEventListener ('click', showMadLib())
+ 	
+  button.addEventListener ('click', showMadLib())
 
 </script>
