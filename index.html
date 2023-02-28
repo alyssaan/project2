@@ -15,6 +15,7 @@
     top: 10vw;
     font-family: lucida-console;
     font-size: 3vw;
+    visibility: visible;
 
   }
   
@@ -176,6 +177,11 @@
     
   }
  	
-  button.onClick = showMadLib()
+  function setup () {
+    button.onclick = showMadLib
+    button.visibility = hidden
+  }
+  
+  window.addEventListener('load', setup)
 
 </script>
