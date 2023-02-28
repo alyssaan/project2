@@ -2,8 +2,8 @@
 
   .madlib {
     position: absolute;
-		left: 47vw;
-    padding: 20px;
+		left: 40vw;
+    top: 5vw;
     font-family: lucida-console;
     font-size: 5vw;
     text-wrap: overflow;
@@ -11,12 +11,11 @@
   
   .button {
     position: absolute;
-    left: 55vw;
-    top: 10vw;
+    left: 45vw;
+    top: 12vw;
     font-family: lucida-console;
     font-size: 3vw;
-    visibility: visible;
-
+    display: block;
   }
   
   .mlText {
@@ -25,6 +24,7 @@
     top: 20vw;
     font-family: lucida-console;
     font-size: 5vw;
+    text-align: center;
   }
 
 </style>
@@ -40,7 +40,7 @@
    return string.split(word).length - 1;
 	}
 	
-  const madlib = document.querySelector('.madlib')
+  let madlib = document.querySelector('.madlib')
   const button = document.querySelector('.button')
 
   const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'crochet', 
@@ -59,10 +59,7 @@
   const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
                   'Professor Satrom', 'Professor Jagoda']
   const places = ['the Reg', 'Harper', 'Woodlawn', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel']
-  
-  // const madlib1 = 'I was {{-ing verb}} in {{course}} when all of a sudden I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...'
-  // const madlib2 = 'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...'
-  
+    
   const genIngVerbs = []
   const genCourses = []
   const genAdjectives = []
@@ -173,13 +170,14 @@
     }
     
     console.log(chosenML)
+    madlib = document.querySelector('.mlText')
     madlib.textContent = chosenML
     
   }
  	
   function setup () {
     button.onclick = showMadLib
-    button.visibility = hidden
+    button.display = 'none'
   }
   
   window.addEventListener('load', setup)
