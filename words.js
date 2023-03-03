@@ -12,6 +12,6 @@ const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enra
 
 const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos', 'Professor Satrom', 'Professor Jagoda']
  
-const places = ['the Reg', 'Harper', 'Woodlawn', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel']
+const places = ['the Reg', 'Harper', 'Botany Pond', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel', 'the Point']
     
 
