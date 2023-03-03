@@ -26,6 +26,16 @@
     font-size: 5vw;
     text-align: center;
   }
+  
+  .special {
+    position: absolute;
+    left: 5vw;
+    top: 20vw;
+    font-family: sans-serif;
+    font-size: 5vw;
+    color: pink;
+    text-align: center;
+  }
 
 </style>
 
@@ -33,6 +43,8 @@
 
 <button class="button">generate</button>
 <div class="mlText"></div>
+
+<script src="words.js"></script>
 
 <script>
   
@@ -43,31 +55,31 @@
   let madlib = document.querySelector('.madlib')
   const button = document.querySelector('.button')
 
-  const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'crochet', 
-                    'snorkeling', 'hula-hooping', 'cleaning', 'cheering', 'curling', 'bobsledding', 
-                    'skipping']
-  const courses = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
-                   'Principles of Microeconomics', 'Philosophical Perspectives']
-  const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 
-                      'ambitious', 'oily']
-  const nouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 
-                   'napkins', 'plates']
-  const edVerbs = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'crocheted', 'snorkeled', 
-                   'hula-hooped', 'cleaned', 'cheered', 'curled', 'bobsled', 'skipped']
-  const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enraged', 'depresed', 
-                    'scared', 'overjoyed']
-  const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
-                  'Professor Satrom', 'Professor Jagoda']
-  const places = ['the Reg', 'Harper', 'Woodlawn', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel']
+//   const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'crochet', 
+//                     'snorkeling', 'hula-hooping', 'cleaning', 'cheering', 'curling', 'bobsledding', 
+//                     'skipping']
+//   const courses = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
+//                    'Principles of Microeconomics', 'Philosophical Perspectives']
+//   const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 
+//                       'ambitious', 'oily']
+//   const nouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 
+//                    'napkins', 'plates']
+//   const edVerbs = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'crocheted', 'snorkeled', 
+//                    'hula-hooped', 'cleaned', 'cheered', 'curled', 'bobsled', 'skipped']
+//   const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enraged', 'depresed', 
+//                     'scared', 'overjoyed']
+//   const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
+//                   'Professor Satrom', 'Professor Jagoda']
+//   const places = ['the Reg', 'Harper', 'Woodlawn', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel']
     
-  const genIngVerbs = []
-  const genCourses = []
-  const genAdjectives = []
-  const genNouns = []
-  const genEdVerbs = []
-  const genFeelings = []
-  const genPeople = []
-  const genPlaces = []
+  let genIngVerbs = []
+  let genCourses = []
+  let genAdjectives = []
+  let genNouns = []
+  let genEdVerbs = []
+  let genFeelings = []
+  let genPeople = []
+  let genPlaces = []
   
   const madlibs = ['I was {{-ing verb}} in {{course}} when all of a sudden I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...',
                    'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...',
@@ -78,9 +90,11 @@
     return arr[n]
   }
   
-  let chosenML = randomItem (madlibs)
+  let chosenML = randomItem(madlibs)
   
-  function showWords () {
+  function blankMadLib () {
+    
+    let blankML = chosenML
     
     const numIngVerbs = countInstances(chosenML, '{{-ing verb}}')
     const numCourses = countInstances(chosenML, '{{course}}')
@@ -130,15 +144,21 @@
 			const place = randomItem(places)
       genPlaces.push(place)
     }
+    
+    madlib = document.querySelector('.mlText')
+    madlib.textContent = blankML
+    button.textContent = 'complete'
+    button.onclick = showMadLib
 
   }
   
   function showMadLib () {
   
-    showWords ()
+    blankMadLib()
     
     for (let a = 0; a < genIngVerbs.length; a++) {
-			chosenML = chosenML.replace('{{-ing verb}}', genIngVerbs[a])
+      let word = `<span class="special">${genIngVerbs[a]}</span>`
+			chosenML = chosenML.replace('{{-ing verb}}', word)
     }
     
     for (let b = 0; b < genCourses.length; b++) {
@@ -169,14 +189,29 @@
 			chosenML = chosenML.replace('{{place}}', genPlaces[h])
     }
     
-    console.log(chosenML)
-    madlib = document.querySelector('.mlText')
-    madlib.textContent = chosenML
+    madlib.innerHTML = chosenML
+    button.textContent = 'reset'
+    button.onclick = reset
     
+  }
+  
+  function reset () {
+    chosenML = randomItem(madlibs)
+    
+    genIngVerbs = []
+		genCourses = []
+		genAdjectives = []
+		genNouns = []
+		genEdVerbs = []
+		genFeelings = []
+		genPeople = []
+		genPlaces = []
+    
+    blankMadLib()
   }
  	
   function setup () {
-    button.onclick = showMadLib
+    button.onclick = blankMadLib
     button.display = 'none'
   }
   
