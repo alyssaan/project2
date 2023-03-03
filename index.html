@@ -28,10 +28,7 @@
   }
   
   .special {
-    position: absolute;
-    left: 5vw;
-    top: 20vw;
-    font-family: sans-serif;
+    font-family: lucida-console;
     font-size: 5vw;
     color: pink;
     text-align: center;
@@ -45,6 +42,7 @@
 <div class="mlText"></div>
 
 <script src="words.js"></script>
+<script src="madlibs.js"></script>
 
 <script>
   
@@ -55,23 +53,6 @@
   let madlib = document.querySelector('.madlib')
   const button = document.querySelector('.button')
 
-//   const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'crochet', 
-//                     'snorkeling', 'hula-hooping', 'cleaning', 'cheering', 'curling', 'bobsledding', 
-//                     'skipping']
-//   const courses = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
-//                    'Principles of Microeconomics', 'Philosophical Perspectives']
-//   const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 
-//                       'ambitious', 'oily']
-//   const nouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 
-//                    'napkins', 'plates']
-//   const edVerbs = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'crocheted', 'snorkeled', 
-//                    'hula-hooped', 'cleaned', 'cheered', 'curled', 'bobsled', 'skipped']
-//   const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enraged', 'depresed', 
-//                     'scared', 'overjoyed']
-//   const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
-//                   'Professor Satrom', 'Professor Jagoda']
-//   const places = ['the Reg', 'Harper', 'Woodlawn', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel']
-    
   let genIngVerbs = []
   let genCourses = []
   let genAdjectives = []
@@ -80,11 +61,7 @@
   let genFeelings = []
   let genPeople = []
   let genPlaces = []
-  
-  const madlibs = ['I was {{-ing verb}} in {{course}} when all of a sudden I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...',
-                   'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...',
-                  'Today in {{course}} there was a surprise lecture by {{person}}. In the middle, they suddenly began {{-ing verb}}. Everyone felt really {{feeling}}!']
-  
+
   function randomItem (arr) {
     const n = Math.floor(Math.random() * arr.length)
     return arr[n]
@@ -162,31 +139,38 @@
     }
     
     for (let b = 0; b < genCourses.length; b++) {
-			chosenML = chosenML.replace('{{course}}', genCourses[b])
+      let word = `<span class="special">${genCourses[b]}</span>`
+			chosenML = chosenML.replace('{{course}}', word)
     }
     
     for (let c = 0; c < genAdjectives.length; c++) {
-			chosenML = chosenML.replace('{{adj}}', genAdjectives[c])
+      let word = `<span class="special">${genAdjectives[c]}</span>`
+			chosenML = chosenML.replace('{{adj}}', word)
     }
     
     for (let d = 0; d < genNouns.length; d++) {
-			chosenML = chosenML.replace('{{pl noun}}', genNouns[d])
+      let word = `<span class="special">${genNouns[d]}</span>`
+			chosenML = chosenML.replace('{{pl noun}}', word)
     }
     
     for (let e = 0; e < genEdVerbs.length; e++) {
-			chosenML = chosenML.replace('{{-ed verb}}', genEdVerbs[e])
+    	let word = `<span class="special">${genEdVerbs[e]}</span>`
+			chosenML = chosenML.replace('{{-ed verb}}', word)
     }
     
     for (let f = 0; f < genFeelings.length; f++) {
-			chosenML = chosenML.replace('{{feeling}}', genFeelings[f])
+      let word = `<span class="special">${genFeelings[f]}</span>`
+			chosenML = chosenML.replace('{{feeling}}', word)
     }
     
     for (let g = 0; g < genPeople.length; g++) {
-			chosenML = chosenML.replace('{{person}}', genPeople[g])
+      let word = `<span class="special">${genPeople[g]}</span>`
+			chosenML = chosenML.replace('{{person}}', word)
     }
     
     for (let h = 0; h < genPlaces.length; h++) {
-			chosenML = chosenML.replace('{{place}}', genPlaces[h])
+      let word = `<span class="special">${genPlaces[h]}</span>`
+			chosenML = chosenML.replace('{{place}}', word)
     }
     
     madlib.innerHTML = chosenML
