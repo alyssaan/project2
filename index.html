@@ -26,13 +26,6 @@
     font-size: 5vw;
     text-align: center;
   }
-  
-  .special {
-    font-family: lucida-console;
-    font-size: 5vw;
-    color: #FF35F6;
-    text-align: center;
-  }
 
 </style>
 
@@ -40,9 +33,6 @@
 
 <button class="button">generate</button>
 <div class="mlText"></div>
-
-<script src="words.js"></script>
-<script src="madlibs.js"></script>
 
 <script>
   
@@ -52,26 +42,45 @@
 	
   let madlib = document.querySelector('.madlib')
   const button = document.querySelector('.button')
-  
-  let genIngVerbs = []
-  let genCourses = []
-  let genAdjectives = []
-  let genNouns = []
-  let genEdVerbs = []
-  let genFeelings = []
-  let genPeople = []
-  let genPlaces = []
 
+  const ingVerbs = ['walking', 'dancing', 'cooking', 'crying', 'shopping', 'laughing', 'crochet', 
+                    'snorkeling', 'hula-hooping', 'cleaning', 'cheering', 'curling', 'bobsledding', 
+                    'skipping']
+  const courses = ['Media Aesthetics', 'Internet Art', 'Self, Culture, and Society', 'General Chemistry', 
+                   'Principles of Microeconomics', 'Philosophical Perspectives']
+  const adjectives = ['yellow', 'dry', 'old', 'dirty', 'clear', 'green', 'metal', 'small', 
+                      'ambitious', 'oily']
+  const nouns = ['shoes', 'octopi', 'cans', 'phones', 'chocolates', 'pencils', 'shirts', 'chopsticks', 
+                   'napkins', 'plates']
+  const edVerbs = ['walked', 'danced', 'cooked', 'cried', 'shopped', 'laughed', 'crocheted', 'snorkeled', 
+                   'hula-hooped', 'cleaned', 'cheered', 'curled', 'bobsled', 'skipped']
+  const feelings = ['happy', 'sad', 'excited', 'scared', 'worried', 'dazed', 'enraged', 'depresed', 
+                    'scared', 'overjoyed']
+  const people = ['Dean Boyer', 'Professor Briz', 'Dean Nandorf', 'President Alivisatos',
+                  'Professor Satrom', 'Professor Jagoda']
+  const places = ['the Reg', 'Harper', 'Woodlawn', 'Crerar', 'Plein Air', 'Mansueto', 'Rockefeller Chapel']
+    
+  const genIngVerbs = []
+  const genCourses = []
+  const genAdjectives = []
+  const genNouns = []
+  const genEdVerbs = []
+  const genFeelings = []
+  const genPeople = []
+  const genPlaces = []
+  
+  const madlibs = ['I was {{-ing verb}} in {{course}} when all of a sudden I looked around and saw {{adj}} {{pl noun}} all around me! I was {{feeling}} because the professor was still {{-ing verb}}. What a {{adj}} day of class...',
+                   'I {{-ed verb}} around campus today. I decided to enter {{place}} to do homework. Suddenly, {{person}} appeared and took my homework! I tried to tell my professor, but they became {{feeling}}. Oh well...',
+                  'Today in {{course}} there was a surprise lecture by {{person}}. In the middle, they suddenly began {{-ing verb}}. Everyone felt really {{feeling}}!']
+  
   function randomItem (arr) {
     const n = Math.floor(Math.random() * arr.length)
     return arr[n]
   }
   
-  let chosenML = randomItem(madlibs)
+  let chosenML = randomItem (madlibs)
   
-  function blankMadLib () {
-    
-    let blankML = chosenML
+  function showWords () {
     
     const numIngVerbs = countInstances(chosenML, '{{-ing verb}}')
     const numCourses = countInstances(chosenML, '{{course}}')
@@ -121,81 +130,53 @@
 			const place = randomItem(places)
       genPlaces.push(place)
     }
-    
-    madlib = document.querySelector('.mlText')
-    madlib.textContent = blankML
-    button.textContent = 'complete'
-    button.onclick = showMadLib
 
   }
   
   function showMadLib () {
   
-    blankMadLib()
+    showWords ()
     
     for (let a = 0; a < genIngVerbs.length; a++) {
-      let word = `<span class="special">${genIngVerbs[a]}</span>`
-			chosenML = chosenML.replace('{{-ing verb}}', word)
+			chosenML = chosenML.replace('{{-ing verb}}', genIngVerbs[a])
     }
     
     for (let b = 0; b < genCourses.length; b++) {
-      let word = `<span class="special">${genCourses[b]}</span>`
-			chosenML = chosenML.replace('{{course}}', word)
+			chosenML = chosenML.replace('{{course}}', genCourses[b])
     }
     
     for (let c = 0; c < genAdjectives.length; c++) {
-      let word = `<span class="special">${genAdjectives[c]}</span>`
-			chosenML = chosenML.replace('{{adj}}', word)
+			chosenML = chosenML.replace('{{adj}}', genAdjectives[c])
     }
     
     for (let d = 0; d < genNouns.length; d++) {
-      let word = `<span class="special">${genNouns[d]}</span>`
-			chosenML = chosenML.replace('{{pl noun}}', word)
+			chosenML = chosenML.replace('{{pl noun}}', genNouns[d])
     }
     
     for (let e = 0; e < genEdVerbs.length; e++) {
-    	let word = `<span class="special">${genEdVerbs[e]}</span>`
-			chosenML = chosenML.replace('{{-ed verb}}', word)
+			chosenML = chosenML.replace('{{-ed verb}}', genEdVerbs[e])
     }
     
     for (let f = 0; f < genFeelings.length; f++) {
-      let word = `<span class="special">${genFeelings[f]}</span>`
-			chosenML = chosenML.replace('{{feeling}}', word)
+			chosenML = chosenML.replace('{{feeling}}', genFeelings[f])
     }
     
     for (let g = 0; g < genPeople.length; g++) {
-      let word = `<span class="special">${genPeople[g]}</span>`
-			chosenML = chosenML.replace('{{person}}', word)
+			chosenML = chosenML.replace('{{person}}', genPeople[g])
     }
     
     for (let h = 0; h < genPlaces.length; h++) {
-      let word = `<span class="special">${genPlaces[h]}</span>`
-			chosenML = chosenML.replace('{{place}}', word)
+			chosenML = chosenML.replace('{{place}}', genPlaces[h])
     }
     
-    madlib.innerHTML = chosenML
-    button.textContent = 'reset'
-    button.onclick = reset
+    console.log(chosenML)
+    madlib = document.querySelector('.mlText')
+    madlib.textContent = chosenML
     
-  }
-  
-  function reset () {
-    chosenML = randomItem(madlibs)
-    
-    genIngVerbs = []
-		genCourses = []
-		genAdjectives = []
-		genNouns = []
-		genEdVerbs = []
-		genFeelings = []
-		genPeople = []
-		genPlaces = []
-    
-    blankMadLib()
   }
  	
   function setup () {
-    button.onclick = blankMadLib
+    button.onclick = showMadLib
     button.display = 'none'
   }
   
